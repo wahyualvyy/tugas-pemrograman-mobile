@@ -10,157 +10,182 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Layout Bebas',
+      title: 'Edit Profile',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.white,
       ),
-      home: const LayoutBebas(),
+      home: const EditProfileScreen(),
     );
   }
 }
 
-class LayoutBebas extends StatelessWidget {
-  const LayoutBebas({Key? key}) : super(key: key);
+class EditProfileScreen extends StatelessWidget {
+  const EditProfileScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {  
+  Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade50,
       appBar: AppBar(
-        title: const Text('Penjualan Toko Elektronik'),
+        elevation: 0,
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black87),
+          onPressed: () {},
+        ),
+        title: const Text(
+          'Edit Profile',
+          style: TextStyle(
+            color: Colors.black87,
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
         centerTitle: true,
+        actions: [
+          TextButton(
+            onPressed: () {},
+            child: const Text(
+              'Save',
+              style: TextStyle(
+                color: Color(0xFF4A7FFF),
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Header Section dengan Row
-            Container(
-              color: Colors.blue.shade700,
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const CircleAvatar(
-                    radius: 30,
-                    backgroundColor: Colors.white,
-                    child: Icon(Icons.person, size: 30),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        'Selamat Datang',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        'Aplikasi Flutter Anda',
-                        style: TextStyle(
-                          color: Colors.white70,
-                          fontSize: 14,
-                        ),
+            const SizedBox(height: 24),
+            
+            // Profile Picture Section
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  width: 140,
+                  height: 140,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: const Color(0xFF4A7FFF),
+                      width: 4,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color(0xFF4A7FFF).withOpacity(0.3),
+                        blurRadius: 20,
+                        offset: const Offset(0, 8),
                       ),
                     ],
                   ),
-                  const Icon(Icons.notifications, color: Colors.white, size: 28),
-                ],
-              ),
-            ),
-            const SizedBox(height: 16),
-
-            // Konten Utama dengan Column
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Judul Section
-                  const Text(
-                    'Fitur Utama',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                  child: ClipOval(
+                    child: Image.network(
+                      'https://via.placeholder.com/140',
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          color: Colors.grey.shade300,
+                          child: const Icon(
+                            Icons.person,
+                            size: 70,
+                            color: Colors.grey,
+                          ),
+                        );
+                      },
                     ),
                   ),
-                  const SizedBox(height: 12),
-
-                  // Row dengan 3 Kartu
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      _buildCard(
-                        icon: Icons.shopping_bag,
-                        label: 'Belanja',
-                        color: Colors.green,
-                      ),
-                      _buildCard(
-                        icon: Icons.favorite,
-                        label: 'Favorit',
-                        color: Colors.red,
-                      ),
-                      _buildCard(
-                        icon: Icons.settings,
-                        label: 'Pengaturan',
-                        color: Colors.orange,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 24),
-
-                  // Daftar Item dengan Row dalam Column
-                  const Text(
-                    'Produk Terbaru',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  _buildProductItem('Laptop Gaming', '\$1.299', Icons.laptop),
-                  const SizedBox(height: 10),
-                  _buildProductItem('Smartphone Pro', '\$899', Icons.phone_iphone),
-                  const SizedBox(height: 10),
-                  _buildProductItem('Headphone Wireless', '\$199', Icons.headphones),
-                  const SizedBox(height: 24),
-
-                  // Footer Section
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(16),
+                ),
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: Container(
+                    width: 42,
+                    height: 42,
                     decoration: BoxDecoration(
-                      color: Colors.grey.shade100,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Column(
-                          children: const [
-                            Icon(Icons.local_shipping, size: 28),
-                            SizedBox(height: 8),
-                            Text('Gratis Ongkir'),
-                          ],
-                        ),
-                        Column(
-                          children: const [
-                            Icon(Icons.security, size: 28),
-                            SizedBox(height: 8),
-                            Text('Aman'),
-                          ],
-                        ),
-                        Column(
-                          children: const [
-                            Icon(Icons.support_agent, size: 28),
-                            SizedBox(height: 8),
-                            Text('Dukungan'),
-                          ],
+                      color: const Color(0xFF4A7FFF),
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: Colors.white,
+                        width: 3,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 8,
+                          offset: const Offset(0, 2),
                         ),
                       ],
                     ),
+                    child: const Icon(
+                      Icons.edit,
+                      color: Colors.white,
+                      size: 20,
+                    ),
                   ),
-                  const SizedBox(height: 20),
+                ),
+              ],
+            ),
+            
+            const SizedBox(height: 32),
+            
+            // Form Fields
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                children: [
+                  _buildProfileField(
+                    label: 'Name',
+                    value: 'Test Test',
+                    icon: Icons.person_outline,
+                  ),
+                  const SizedBox(height: 16),
+                  
+                  _buildProfileField(
+                    label: 'Phone',
+                    value: '(208) 206-5039',
+                    icon: Icons.phone_outlined,
+                  ),
+                  const SizedBox(height: 16),
+                  
+                  _buildProfileField(
+                    label: 'Email',
+                    value: 'test.test@gmail.com',
+                    icon: Icons.email_outlined,
+                  ),
+                  const SizedBox(height: 16),
+                  
+                  _buildBioField(),
+                  
+                  const SizedBox(height: 32),
+                  
+                  // Action Buttons
+                  Row(
+                    children: [
+                      Expanded(
+                        child: _buildActionButton(
+                          label: 'Change Password',
+                          icon: Icons.lock_outline,
+                          onTap: () {},
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: _buildActionButton(
+                          label: 'Privacy Settings',
+                          icon: Icons.security_outlined,
+                          onTap: () {},
+                        ),
+                      ),
+                    ],
+                  ),
+                  
+                  const SizedBox(height: 32),
                 ],
               ),
             ),
@@ -170,81 +195,181 @@ class LayoutBebas extends StatelessWidget {
     );
   }
 
-  Widget _buildCard({
-    required IconData icon,
+  Widget _buildProfileField({
     required String label,
-    required Color color,
+    required String value,
+    required IconData icon,
   }) {
-    return Column(
-      children: [
-        Container(
-          width: 80,
-          height: 80,
-          decoration: BoxDecoration(
-            color: color.withOpacity(0.2),
-            borderRadius: BorderRadius.circular(12),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 10,
+            offset: const Offset(0, 2),
           ),
-          child: Icon(icon, color: color, size: 40),
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          children: [
+            Container(
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(
+                color: const Color(0xFF4A7FFF).withOpacity(0.1),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Icon(
+                icon,
+                color: const Color(0xFF4A7FFF),
+                size: 22,
+              ),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    label,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.grey.shade600,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    value,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.black87,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Icon(
+              Icons.arrow_forward_ios,
+              size: 16,
+              color: Colors.grey.shade400,
+            ),
+          ],
         ),
-        const SizedBox(height: 8),
-        Text(
-          label,
-          style: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-      ],
+      ),
     );
   }
 
-  Widget _buildProductItem(String title, String price, IconData icon) {
+  Widget _buildBioField() {
     return Container(
-      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.shade300),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 70,
-            height: 70,
-            decoration: BoxDecoration(
-              color: Colors.blue.shade100,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Icon(icon, color: Colors.blue, size: 40),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 10,
+            offset: const Offset(0, 2),
           ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
               children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+                Container(
+                  width: 44,
+                  height: 44,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF4A7FFF).withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: const Icon(
+                    Icons.info_outline,
+                    color: Color(0xFF4A7FFF),
+                    size: 22,
                   ),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(width: 16),
                 Text(
-                  price,
+                  'Tell Us About Yourself',
                   style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.green.shade600,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 12,
+                    color: Colors.grey.shade600,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ],
             ),
+            const SizedBox(height: 12),
+            Text(
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...',
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.grey.shade700,
+                height: 1.5,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Icon(
+                Icons.arrow_forward_ios,
+                size: 16,
+                color: Colors.grey.shade400,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildActionButton({
+    required String label,
+    required IconData icon,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 14),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: const Color(0xFF4A7FFF).withOpacity(0.3),
+            width: 1.5,
           ),
-          IconButton(
-            icon: const Icon(Icons.arrow_forward),
-            onPressed: () {},
-          ),
-        ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              color: const Color(0xFF4A7FFF),
+              size: 20,
+            ),
+            const SizedBox(width: 8),
+            Text(
+              label,
+              style: const TextStyle(
+                color: Color(0xFF4A7FFF),
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
