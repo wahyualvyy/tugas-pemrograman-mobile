@@ -58,5 +58,9 @@ Repositori ini berisi tugas **Pemrograman Mobile (Flutter)** yang berfokus pada 
 1. Clone repositori ke lokal:
    ```bash
    git clone https://github.com/wahyualvyy/tugas-pemrograman-mobile.git
-2. cd pertemuan_3
-3. flutter run
+2. Masuk ke folder tugas pertemuan 3
+   ```bash
+   cd pertemuan_3
+3. Jalankan program
+   ```bash
+   flutter run
