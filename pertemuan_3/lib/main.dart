@@ -63,108 +63,147 @@ class EditProfileScreen extends StatelessWidget {
           children: [
             const SizedBox(height: 24),
             
-            // Profile Picture Section
-            Stack(
-              alignment: Alignment.center,
+            // Profile Picture Section - Column dengan Stack (Images + Icon + Button)
+            Column(
               children: [
-                Container(
-                  width: 140,
-                  height: 140,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: const Color(0xFF4A7FFF),
-                      width: 4,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: const Color(0xFF4A7FFF).withOpacity(0.3),
-                        blurRadius: 20,
-                        offset: const Offset(0, 8),
-                      ),
-                    ],
-                  ),
-                  child: ClipOval(
-                    child: Image.network(
-                      'https://via.placeholder.com/140',
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) {
-                        return Container(
-                          color: Colors.grey.shade300,
-                          child: const Icon(
-                            Icons.person,
-                            size: 70,
-                            color: Colors.grey,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: Container(
-                    width: 42,
-                    height: 42,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF4A7FFF),
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: Colors.white,
-                        width: 3,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          blurRadius: 8,
-                          offset: const Offset(0, 2),
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Container(
+                      width: 140,
+                      height: 140,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: const Color(0xFF4A7FFF),
+                          width: 4,
                         ),
-                      ],
+                        boxShadow: [
+                          BoxShadow(
+                            color: const Color(0xFF4A7FFF).withOpacity(0.3),
+                            blurRadius: 20,
+                            offset: const Offset(0, 8),
+                          ),
+                        ],
+                      ),
+                      child: ClipOval(
+                        child: Image.network(
+                          'https://via.placeholder.com/140',
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Container(
+                              color: Colors.grey.shade300,
+                              child: const Icon(
+                                Icons.person,
+                                size: 70,
+                                color: Colors.grey,
+                              ),
+                            );
+                          },
+                        ),
+                      ),
                     ),
-                    child: const Icon(
-                      Icons.edit,
-                      color: Colors.white,
-                      size: 20,
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: Container(
+                        width: 42,
+                        height: 42,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF4A7FFF),
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.white,
+                            width: 3,
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.2),
+                              blurRadius: 8,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: const Icon(
+                          Icons.edit,
+                          color: Colors.white,
+                          size: 20,
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                
+                // Row dengan 3 Button (Icon + Text)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton.icon(
+                      onPressed: () {},
+                      icon: const Icon(Icons.camera_alt, size: 18),
+                      label: const Text('Camera'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF4A7FFF),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 10,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    ElevatedButton.icon(
+                      onPressed: () {},
+                      icon: const Icon(Icons.photo_library, size: 18),
+                      label: const Text('Gallery'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF4A7FFF),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 10,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
             
             const SizedBox(height: 32),
             
-            // Form Fields
+            // Form Fields - Column
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
+                  // Row kombinasi (Icon + Text + Icon)
                   _buildProfileField(
                     label: 'Name',
-                    value: 'Test Test',
+                    value: 'Mochammad Wahyu Alvy Kusuma',
                     icon: Icons.person_outline,
                   ),
                   const SizedBox(height: 16),
                   
                   _buildProfileField(
                     label: 'Phone',
-                    value: '(208) 206-5039',
+                    value: '+62 812 **** **81',
                     icon: Icons.phone_outlined,
                   ),
                   const SizedBox(height: 16),
                   
                   _buildProfileField(
                     label: 'Email',
-                    value: 'test.test@gmail.com',
+                    value: 'afikusuma1234@gmail.com',
                     icon: Icons.email_outlined,
                   ),
                   const SizedBox(height: 16),
                   
+                  // Bio Field dengan Column (Icon + Text dalam Row, lalu Text lagi)
                   _buildBioField(),
                   
                   const SizedBox(height: 32),
                   
-                  // Action Buttons
+                  // Row dengan 2 Button (Icon + Text)
                   Row(
                     children: [
                       Expanded(
@@ -195,6 +234,7 @@ class EditProfileScreen extends StatelessWidget {
     );
   }
 
+  // Widget kombinasi Row: Icon + Column(Text + Text) + Icon
   Widget _buildProfileField({
     required String label,
     required String value,
@@ -216,6 +256,7 @@ class EditProfileScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Row(
           children: [
+            // Icon dalam Container
             Container(
               width: 44,
               height: 44,
@@ -230,6 +271,8 @@ class EditProfileScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 16),
+            
+            // Column dengan 2 Text
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -254,6 +297,8 @@ class EditProfileScreen extends StatelessWidget {
                 ],
               ),
             ),
+            
+            // Icon arrow
             Icon(
               Icons.arrow_forward_ios,
               size: 16,
@@ -265,6 +310,7 @@ class EditProfileScreen extends StatelessWidget {
     );
   }
 
+  // Widget kombinasi Column: Row(Icon + Text) + Text + Icon
   Widget _buildBioField() {
     return Container(
       decoration: BoxDecoration(
@@ -283,6 +329,7 @@ class EditProfileScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Row dengan Icon + Text
             Row(
               children: [
                 Container(
@@ -310,6 +357,8 @@ class EditProfileScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 12),
+            
+            // Text konten
             Text(
               'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...',
               style: TextStyle(
@@ -319,6 +368,8 @@ class EditProfileScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
+            
+            // Icon arrow di kanan
             Align(
               alignment: Alignment.centerRight,
               child: Icon(
@@ -333,6 +384,7 @@ class EditProfileScreen extends StatelessWidget {
     );
   }
 
+  // Widget Button kombinasi Row: Icon + Text
   Widget _buildActionButton({
     required String label,
     required IconData icon,
