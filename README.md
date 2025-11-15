@@ -16,7 +16,7 @@ Repositori ini berisi tugas **Pemrograman Mobile (Flutter)** yang berfokus pada 
 
 ## 🧩 Deskripsi Tugas
 
-### 📝 Instruksi:
+### 📝 Instruksi pertemuan 3:
 1. **Buat desain widget kombinasi** dengan menggunakan:
    - **Icon**
    - **Button**
@@ -31,6 +31,38 @@ Repositori ini berisi tugas **Pemrograman Mobile (Flutter)** yang berfokus pada 
 5. Upload project ke **GitHub** masing-masing.
 6. Kumpulkan **link repositori GitHub** kepada dosen sesuai instruksi.
 
+### 📝 Instruksi pertemuan 5:
+# Soal 3: Desain Daftar Kontak
+
+Tugas ini adalah untuk membuat tampilan daftar kontak yang fungsional dan menarik secara visual menggunakan Flutter.
+
+## 🎯 Instruksi Utama
+
+Buat tampilan daftar kontak menggunakan `ListTile` yang dibungkus di dalam `Card`.
+
+### Kriteria Setiap Item Kontak
+
+Setiap item dalam daftar harus berisi:
+
+* **Avatar:** Ikon orang (misalnya, `Icons.person` atau `CircleAvatar` dengan inisial).
+* **Nama Kontak:** Teks untuk menampilkan nama.
+* **Nomor Telepon:** Teks untuk menampilkan nomor.
+* **Status:** Indikator status (Online, Offline, Away) dengan indikator warna kecil (misalnya, `Container` bulat kecil).
+* **Tombol Panggil:** Sebuah `IconButton` dengan ikon telepon (misalnya, `Icons.call`).
+
+### ✨ Peningkatan UX (User Experience)
+
+Tambahkan elemen UX yang baik untuk membuat aplikasi lebih ramah pengguna:
+
+* **Warna Status:** Gunakan warna yang jelas dan mudah dibedakan untuk status (contoh: Hijau untuk Online, Abu-abu untuk Offline, Kuning/Oranye untuk Away).
+* **Keterbacaan:** Pastikan semua teks mudah dibaca (kontras warna dan ukuran font yang baik).
+* **Interaksi:** Ketika `IconButton` panggil ditekan, tampilkan `SnackBar` atau `Dialog` sederhana (contoh: "Memanggil [Nama Kontak]...").
+
+---
+
+## 🏆 Bonus
+
+* Buat satu versi tambahan dari tampilan ini yang mendukung **Dark Mode** (Mode Gelap) secara penuh.
 ---
 
 ## 🧠 Tujuan Pembelajaran

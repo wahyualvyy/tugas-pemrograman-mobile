@@ -22,14 +22,20 @@ class _ContactListAppState extends State<ContactListApp> {
       theme: ThemeData(
         brightness: Brightness.light,
         primarySwatch: Colors.blue,
+        useMaterial3: true,
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
         primarySwatch: Colors.blue,
+        useMaterial3: true,
       ),
       themeMode: isDarkMode ? ThemeMode.dark : ThemeMode.light,
       home: ContactListScreen(
-        onThemeToggle: () => setState(() => isDarkMode = !isDarkMode),
+        onThemeToggle: () {
+          setState(() {
+            isDarkMode = !isDarkMode;
+          });
+        },
         isDarkMode: isDarkMode,
       ),
     );
@@ -156,6 +162,8 @@ class ContactCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 8),
       elevation: 3,
@@ -167,11 +175,15 @@ class ContactCard extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 28,
-                backgroundColor: Colors.blue.shade100,
+                backgroundColor: isDark 
+                    ? Colors.blue.shade900 
+                    : Colors.blue.shade100,
                 child: Icon(
                   Icons.person,
                   size: 30,
-                  color: Colors.blue.shade700,
+                  color: isDark 
+                      ? Colors.blue.shade300 
+                      : Colors.blue.shade700,
                 ),
               ),
               // Indikator status kecil di sudut
@@ -185,7 +197,7 @@ class ContactCard extends StatelessWidget {
                     color: contact.statusColor,
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: Colors.white,
+                      color: isDark ? Colors.grey.shade900 : Colors.white,
                       width: 2,
                     ),
                   ),
@@ -196,9 +208,10 @@ class ContactCard extends StatelessWidget {
           // Nama dan informasi kontak
           title: Text(
             contact.name,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16,
+              color: isDark ? Colors.white : Colors.black,
             ),
           ),
           subtitle: Column(
@@ -209,7 +222,9 @@ class ContactCard extends StatelessWidget {
                 contact.phone,
                 style: TextStyle(
                   fontSize: 14,
-                  color: Colors.grey.shade600,
+                  color: isDark 
+                      ? Colors.grey.shade400 
+                      : Colors.grey.shade600,
                 ),
               ),
               const SizedBox(height: 4),
